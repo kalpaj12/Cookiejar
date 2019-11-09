@@ -40,8 +40,8 @@ function removeAllCookies(currTabDomain) {
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.action.localeCompare("BlockCookies") === 0) {
-        var currTabURL = sender.url || "invalid";
-        var localurlPattern;
+        let currTabURL = sender.url || "invalid";
+        let localurlPattern;
 
         for (let i = 0; i < urlPatterns.length; i++) {
             if (currTabURL.includes(urlPatternsNames[i])) {
@@ -50,16 +50,16 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             }
         }
 
-        var contentSettings = chrome.contentSettings;
+        let contentSettings = chrome.contentSettings;
         contentSettings.cookies.clear({}, function() {
             contentSettings.cookies.set({
-                "primaryPattern": localurlPattern || "http://www.example.com/*",
+                "primaryPattern": localurlPattern || 'http://www.example.com/*',
                 "setting": "block"
             });
         });
     } else if (msg.action.localeCompare("ClearCookies") === 0) {
-        var currTabURL = sender.url || "invalid";
-        var localurlPattern;
+        let currTabURL = sender.url || "invalid";
+        let localurlPattern;
 
         for (let i = 0; i < urlPatternsNames.length; i++) {
             if (currTabURL.includes(urlPatternsNames[i])) {
