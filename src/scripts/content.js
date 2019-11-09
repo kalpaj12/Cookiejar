@@ -27,10 +27,13 @@ if (compareStr("medium")) {
         localStorage.clear();
         sessionStorage.clear();
 
-        // Remove meter
-        let removeElement = document.getElementsByClassName(document.querySelector('[class$="meter"]').className);
-        if (removeElement[0]) {
-            removeElement[0].remove();
+        // Remove meterBanner
+        let meterClass = document.querySelector('[class$="meter"]');
+        if (meterClass) {
+            let removeElement = document.getElementsByClassName(meterClass.className);
+            if (removeElement[0]) {
+                removeElement[0].remove();
+            }
         }
 
         // Remove top banner
