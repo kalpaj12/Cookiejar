@@ -50,9 +50,8 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
             }
         }
 
-        let contentSettings = chrome.contentSettings;
-        contentSettings.cookies.clear({}, function() {
-            contentSettings.cookies.set({
+        chrome.contentSettings.cookies.clear({}, function() {
+            chrome.contentSettings.cookies.set({
                 "primaryPattern": localurlPattern || 'http://www.example.com/*',
                 "setting": "block"
             });
