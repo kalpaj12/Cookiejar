@@ -13,16 +13,11 @@ var urlPatternsNames = [
 ];
 
 function removeAllCookies(currTabDomain) {
-
-    if (!chrome.cookies) {
-        chrome.cookies = chrome.experimental.cookies;
-    }
-
     var removeCookie = function(cookie) {
         var url = "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
         chrome.cookies.remove({
             url,
-            "name": cookie.name
+            name: cookie.name
         });
     };
 
@@ -40,22 +35,22 @@ function removeAllCookies(currTabDomain) {
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
     if (msg.action.localeCompare("BlockCookies") === 0) {
-        let currTabURL = sender.url || "invalid";
-        let localurlPattern;
+        // let currTabURL = sender.url || "invalid";
+        // let localurlPattern;
 
-        for (let i = 0; i < urlPatterns.length; i++) {
-            if (currTabURL.includes(urlPatternsNames[i])) {
-                localurlPattern = urlPatterns[i];
-                break;
-            }
-        }
+        // for (let i = 0; i < urlPatterns.length; i++) {
+        //     if (currTabURL.includes(urlPatternsNames[i])) {
+        //         localurlPattern = urlPatterns[i];
+        //         break;
+        //     }
+        // }
 
-        chrome.contentSettings.cookies.clear({}, function() {
-            chrome.contentSettings.cookies.set({
-                "primaryPattern": localurlPattern || 'http://www.example.com/*',
-                "setting": "block"
-            });
-        });
+        // chrome.contentSettings.cookies.set({
+        //     primaryPattern: localurlPattern || 'http://www.example.com/*',
+        //     setting: "block"
+        // }, function(res){
+        //     console.log(res);
+        // });
     } else if (msg.action.localeCompare("ClearCookies") === 0) {
         let currTabURL = sender.url || "invalid";
         let localurlPattern;
@@ -68,7 +63,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
         }
         let currTabDomain = "." + localurlPattern + ".com";
         removeAllCookies(currTabDomain);
-        // originName = "https://www." + localurlPattern + ".com"
+        // originName =  currTabDomain;
         // chrome.browsingData.remove({
         //     "origins": [originName]
         // }, {

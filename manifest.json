@@ -12,7 +12,7 @@
     },
     "browser_action": {
         "default_title": "CookieJar",
-        "default_icon": "src/icons/default.png"
+        "default_icon": "src/icons/48.png"
     },
     "background": {
         "scripts": [
@@ -37,7 +37,6 @@
         "storage",
         "cookies",
         "contextMenus",
-        "contentSettings",
         "browsingData",
         "webRequest",
         "webRequestBlocking"
