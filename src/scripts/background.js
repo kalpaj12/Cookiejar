@@ -22,7 +22,7 @@ function removeAllCookies(currTabDomain) {
         var url = "http" + (cookie.secure ? "s" : "") + "://" + cookie.domain + cookie.path;
         chrome.cookies.remove({
             url,
-            "name": cookie.name
+            name: cookie.name
         });
     };
 
